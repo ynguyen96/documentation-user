@@ -48,17 +48,21 @@ class IframeVideo(Directive):
 
 
 class Youtube(IframeVideo):
-    html = '<iframe src="https://www.youtube.com/embed/%(video_id)s" \
+    html = '<div class="embed-responsive embed-responsive-16by9"> \
+    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/%(video_id)s" \
     width="%(width)u" height="%(height)u" frameborder="0" \
     webkitAllowFullScreen mozallowfullscreen allowfullscreen \
-    class="align-%(align)s"></iframe>'
+    class="align-%(align)s"></iframe> \
+    </div>'
 
 
 class Vimeo(IframeVideo):
-    html = '<iframe src="https://player.vimeo.com/video/%(video_id)s" \
+    html = '<div class="embed-responsive embed-responsive-16by9"> \
+    <iframe src="https://player.vimeo.com/video/%(video_id)s" \
     width="%(width)u" height="%(height)u" frameborder="0" \
     webkitAllowFullScreen mozallowfullscreen allowFullScreen \
-    class="align-%(align)s"></iframe>'
+    class="align-%(align)s"></iframe>\
+    </div>'
 
 
 def setup(builder):
