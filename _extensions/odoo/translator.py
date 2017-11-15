@@ -632,6 +632,9 @@ class BootstrapTranslator(nodes.NodeVisitor, object):
                 else:
                     cover = conf.odoo_cover_default_external
 
+                # imgurl = u"{}".format(
+                #     util.relative_uri(baseuri, banner) or '#')
+
                 if cover:
                     banner = '_static/' + cover
                     base, ext = os.path.splitext(banner)
@@ -645,7 +648,7 @@ class BootstrapTranslator(nodes.NodeVisitor, object):
 
                 self.body.append(u"""
                 <div class="col-sm-6 col-md-3">
-                <figure class="card">
+                <figure class="card" data-img-url="{imgurl}">
                     <a href="{link}" class="card-img">
                         <span style="{style}"></span>
                         <figcaption>{title}</figcaption>
@@ -656,6 +659,7 @@ class BootstrapTranslator(nodes.NodeVisitor, object):
                     link=subref if util.url_re.match(subref) else util.relative_uri(
                         baseuri, self.builder.get_target_uri(subref)),
                     style=style,
+                    imgurl= util.relative_uri(baseuri, banner) if cover else '#',
                     title=subtitle if subtitle else util.nodes.clean_astext(env.titles[subref]),
                 ))
 
