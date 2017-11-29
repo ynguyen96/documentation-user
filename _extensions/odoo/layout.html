@@ -3,7 +3,6 @@
 {% set script_files = script_files + [
 '_static/jquery.min.js',
 '_static/bootstrap.js',
-'_static/vibrant.min.js',
 '_static/doc.js',
 '_static/jquery.noconflict.js',
 ] %}
@@ -24,7 +23,6 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://fonts.googleapis.com/css?family=Work+Sans:500,600" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Rubik:300,400,500" rel="stylesheet">
   {{ super() }}
 {%- endblock -%}
 
@@ -229,10 +227,9 @@
     {% else %}
     {% set container = 'container' %}
     {% endif %}
-    <div class="{{ container}} {{ ' '.join(classes) }}">
-      <main class="container-fluid {{ ' '.join(classes) }}">
+      <main class="container {{ ' '.join(classes) }}">
         {% if pagename != master_doc %}
-        <div class="row">
+        <div class="o_content row">
           {% if 'has-toc' not in meta and not (pagename in toc) %}
           <aside>
             <div class="navbar-aside text-center">
@@ -253,7 +250,6 @@
         {% endif %}
         <div id="mask"></div>
       </main>
-    </div>
   </div>
 
   <div class="floating_action_container">

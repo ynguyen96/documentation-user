@@ -1,6 +1,7 @@
 // =============================================================================
 // Typography
 // =============================================================================
+@margin-base: 5px;
 
 // Font rendering
 // ----------------------------------------
@@ -22,72 +23,57 @@ h1, h2, h3, h4, h5, h6 {
     }
 }
 
-.headings-border (@show: true) {
+.headings-margin-small () {
     > h2, > h3, > h4, > h5, > h6 {
-        & when (@show = true) {
-            margin: 0;
-            padding-top: 40px;
-            border-top: 1px solid #f4f6f7;
-        }
-        & when (@show = false) {
-            margin: 0px;
-            padding-top: 10px;
-            border-top: none;
-        }
+        margin-top: @margin-base*2;
     }
+}
+.headings-bordered () {
+    padding-bottom: @margin-base;
+    border-bottom: 2px solid #f4f6f7;
 }
 
 article.doc-body {
-    section {
-        padding-bottom: 39px;
-        .headings-border();
 
-        &:first-child {
-            &:empty {
-                display: none;
-                + section {
-                    .headings-border(false);
-                }
+    // Vertical rhythm
+    > section {
+        padding-bottom: @margin-base*2;
+
+        > :last-child {
+            margin-bottom: 0;
+        }
+
+        > h2, > h3, > h4, > h5, > h6 {
+            margin-bottom: @margin-base;
+            margin-top: @margin-base*8;
+
+            &:last-child {
+                margin-bottom: -@margin-base*6;
+                .headings-bordered();
             }
         }
 
-        > img.img-responsive:last-child {
-            margin-bottom: 0
+        > h2 {
+            .headings-bordered();
         }
 
-        > table {
-            tbody {
-                font-size: 15px;
+        &:first-of-type {
+            .headings-margin-small();
+
+            &:empty, &.hidden {
+                display: none;
+
+                + section {
+                    .headings-margin-small();
+                }
             }
         }
     }
 
-	h2 {
-		font-size: 25px;
-
-        &:last-child {
-            margin-bottom: -20px;
-        }
-        + p {
-    		padding-top: 11px;
-    	}
-	}
-
-	h3 {
-		font-size: 20px;
-
-        + p {
-    		padding-top: 7px;
-    	}
-	}
-
-	h4, h5, h6 {
-		font-size: 17px;
-
-        + p {
-    		padding-top: 5px;
-    	}
-	}
+    // Typography components
+    > section {
+        line-height: 26px;
+    }
 
     a, a:hover {
         text-decoration: underline;
@@ -100,25 +86,18 @@ article.doc-body {
 			margin-top: 17px;
 		}
 	}
+
 	dl {
-		font-size: 15px;
-		line-height: 26px;
+        dt code {
+            font-size: 0.9em;
+        }
+
+        dd {
+            margin: 2px 0 @grid-gutter-width/2 @grid-gutter-width/2;
+        }
 	}
-    p {
-        font-size: 15px;
-        line-height: 26px;
-
-        + p {
-            padding-top: 0;
-        }
-
-        &:first-child:last-child {
-            margin-bottom: -10px;
-        }
-    }
 
     ol, ul {
-        font-size: 15px;
         line-height: 26px;
         padding: 0;
         list-style: none;
@@ -166,7 +145,6 @@ article.doc-body {
 
     .o_has_permalink_marker {
         transition: all, 0.3s;
-        padding-bottom: 10px;
         padding-left: 0;
 
         i {
@@ -189,59 +167,4 @@ article.doc-body {
             background-color: #fff7d1;
         }
     }
-
-
-
-
-
-    // h2 {
-    //     font-size: 24px;
-    //     margin-top: 52px;
-    //     // letter-spacing: -0.04em;
-    //     // font-weight: @fw_medium;
-    // }
-    // 
-    // h3 {
-    //     font-size: 20px;
-    //     margin-top: 25px;
-    // }
-    // 
-    // &:first-child {
-    //     &:empty + section {
-    //         .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
-    //             margin-top: 0;
-    //         }
-    //     }
-    // }
-
-
-    // > p {
-    //     line-height: 24px;
-    //     margin: 0;
-    //     margin-bottom: 24px
-    // 
-    // }
-    // 
-    // > p + ul, > p + ol {
-    //     margin-top: -20px;
-    // }
-    // 
-    // ul, ol {
-    //     padding-left: 0;
-    //     line-height: 24px;
-    //     margin-bottom: 24px;
-    // 
-    //     li {
-    //         line-height: @line-height-base;
-    //         margin-left: 24px;
-    // 
-    //         p:last-child {
-    //             margin-bottom: 0;
-    //         }
-    // 
-    //         ul {
-    //             margin-bottom: 0
-    //         }
-    //     }
-    // }
 }
